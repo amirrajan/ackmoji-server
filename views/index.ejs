@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Emoji Ack</title>
+        <meta name="version" content="1.0">
+        <link rel="stylesheet" href="/index.css" />
+    </head>
+    <body>
+        <h1>Emoji Ack</h1>
+
+        <div>Send an emoji by selecting one of the buttons below:</div>
+        <br/>
+        <script>
+            function uuid() {
+              return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+              });
+            }
+
+            function getUserId() {
+              let r = localStorage.getItem('userId')
+              if (r) return r
+              localStorage.setItem('userId', uuid())
+              return getUserId()
+            }
+
+            async function sendAck(value) {
+              const result = await fetch(`/ack`,
+                                         {
+                                           method: "POST",
+                                           headers: { 'Content-Type': 'application/json' },
+                                           body: JSON.stringify({ userId: getUserId(), emoji: value })
+                                         });
+              document.getElementById("notification").innerHTML = "ack sent!"
+              setTimeout(() => {
+                document.getElementById("notification").innerHTML = ""
+              }, 100)
+            }
+        </script>
+        <% for(var i = 0; i < availableEmojis.length; i++) { %>
+           <img id="<%= availableEmojis[i] %>" src="/<%= availableEmojis[i] %>.png" onclick="sendAck('<%= availableEmojis[i] %>');" />
+        <% } %>
+        <div id="notification"></div>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+body {
+  font-family: monospace;
+  width: 720px;
+  height: 720px;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 300;
+  background-color: rgba(47, 49, 54, 255);
+  color: #ffffff;
+}
+
+form {
+  display: inline;
+}
+
+input {
+  margin: 5px;
+  width: 100%;
+}
+
+img {
+  border:  solid 1px gray;
+  padding: 32px;
+  margin:  8px;
+}
+
+input[type=button] {
+  font-family: monospace;
+  height: 64px;
+  width:  128px;
+  background-color: transparent;
+  border: solid 1px gray;
+}
+
+pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
